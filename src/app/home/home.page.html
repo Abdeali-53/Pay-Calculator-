@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title> Pay Calculator </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="onSubmitBtn(f)">
+  <div>
+  <ion-card id="input-card">
+  <ion-list>
+    <ion-item>
+      <div class="ion-margin-top ion-padding-top">
+      <ion-label position="floating" font-family="Times New Roman, Times, serif"> Number Of Hours Worked: </ion-label>
+      <ion-input type="number" [(ngModel)]="numberOfHours" name="hoursWorked" required></ion-input>
+    </div>
+    </ion-item>
+    
+    <ion-item>
+      <div class="ion-margin-top ion-padding-top">
+      <ion-label position="floating" font-family="Times New Roman, Times, serif"> Hourly Rate: </ion-label>
+      <ion-input [(ngModel)]="hourlyRate" type="number"  name="hourlyRate" required></ion-input>
+    </div>
+    </ion-item>
+  </ion-list>
+  <div style="text-align: center !important;" >
+    <ion-button (click)="showResult = !showResult" type="submit"  shape="rectangle" expand="center" font-family="Times New Roman, Times, serif" [disabled]="!f.valid">Calculate</ion-button>
+  </div>
+</ion-card>
+</div>
+</form>
+
+  <ion-card *ngIf="showResult" id="result-card">
+  <ion-card-header>
+    <ion-card-subtitle>Regular Pay:</ion-card-subtitle>
+    <ion-card-title>${{regularPay}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-header>
+    <ion-card-subtitle>Overtime Pay:</ion-card-subtitle>
+    <ion-card-title>${{overTimePay}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-header>
+    <ion-card-subtitle>Total Pay:</ion-card-subtitle>
+    <ion-card-title>${{totalPay}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-header>
+    <ion-card-subtitle>Tax:</ion-card-subtitle>
+    <ion-card-title>${{tax}}</ion-card-title>
+  </ion-card-header>
+  </ion-card>
+</ion-content>
